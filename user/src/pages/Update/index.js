@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import { Redirect, Link } from "react-router-dom";
-import "./insert.css";
+import React, { useState, useEffect } from "react";
+import { Redirect, Link, useParams } from "react-router-dom";
+import "./update.css";
+import api from "../../services/services";
 
-const Insert = () => {
+const Update = () => {
+  const { id } = useParams();
+
   const [info, setInfo] = useState({
     user: {
       name: "",
@@ -16,6 +19,16 @@ const Insert = () => {
     Redirect: false,
   });
 
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  const loadUser = async (page = 1) => {
+    const response = await api.get(`/users/${id}`);
+    setInfo({
+      user: response.data,
+    });
+  };
   const handleChange = (event) => {
     const { name, value } = event.target;
     setInfo((prevState) => ({
@@ -31,8 +44,9 @@ const Insert = () => {
     });
   };
   const handleSubmit = (event) => {
-    fetch("http://localhost:3001/system/users/", {
-      method: "post",
+    fetch(`http://localhost:3001/system/users/${id}`, {
+      method: "put",
+      id: id,
       body: JSON.stringify(info.user),
       headers: {
         "Content-Type": "application/json",
@@ -44,9 +58,7 @@ const Insert = () => {
           Redirect: true,
         }));
       }
-      console.log(info);
     });
-    console.log(info);
 
     event.preventDefault();
   };
@@ -56,8 +68,8 @@ const Insert = () => {
   ) : (
     <form onSubmit={(e) => handleSubmit(e)}>
       <fieldset>
-        <legend>Create User</legend>
-        <div className="user-insert">
+        <legend>Edit User</legend>
+        <div className="user-update">
           <label htmlFor="name">Name</label> <br />
           <input
             type="text"
@@ -71,7 +83,7 @@ const Insert = () => {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <div className="user-insert">
+        <div className="user-update">
           <label htmlFor="registration">Registration</label> <br />
           <input
             type="text"
@@ -85,7 +97,7 @@ const Insert = () => {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <div className="user-insert">
+        <div className="user-update">
           <label htmlFor="city">City</label> <br />
           <input
             type="text"
@@ -95,11 +107,11 @@ const Insert = () => {
             minLength="3"
             maxLength="100"
             required
-            value={info.user.city}
+            value={info.user.address.city}
             onChange={(e) => handleAddressChange(e)}
           />
         </div>
-        <div className="user-insert">
+        <div className="user-update">
           <label htmlFor="state">State</label> <br />
           <input
             type="text"
@@ -109,11 +121,11 @@ const Insert = () => {
             minLength="2"
             maxLength="2"
             required
-            value={info.user.state}
+            value={info.user.address.state}
             onChange={(e) => handleAddressChange(e)}
           />
         </div>
-        <div className="user-insert">
+        <div className="user-update">
           <label>
             <input
               type="radio"
@@ -137,7 +149,7 @@ const Insert = () => {
           <br />
         </div>
 
-        <button type="submit">Register</button>
+        <button type="submit">Edit User</button>
       </fieldset>
       <Link to="/">
         <button>Back</button>
@@ -146,4 +158,4 @@ const Insert = () => {
   );
 };
 
-export default Insert;
+export default Update;

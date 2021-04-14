@@ -39,6 +39,10 @@ const Users = () => {
 
   return (
     <div className="user-list">
+      <Link to="/createUser">
+        <button>Create New User</button>
+      </Link>
+
       {users.user.map((el) => (
         <article key={el._id}>
           <strong>{el.name}</strong>

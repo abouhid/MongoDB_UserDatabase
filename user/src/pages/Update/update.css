@@ -1,4 +1,4 @@
-.user-insert input {
+.user-update input {
   background: aliceblue;
   border: 1px solid black;
   border-radius: 5px;
@@ -8,6 +8,6 @@
   color: dimgray;
 }
 
-.user-insert label {
+.user-update label {
   font-size: 20px;
 }

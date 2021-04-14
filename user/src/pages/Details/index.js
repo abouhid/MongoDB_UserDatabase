@@ -23,7 +23,6 @@ const Details = () => {
 
   const loadUser = async (page = 1) => {
     const response = await api.get(`/users/${id}`);
-    console.log(response.data);
     setInfo({
       user: response.data,
     });
