@@ -1,0 +1,13 @@
+.user-delete input {
+  background: aliceblue;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 5px;
+  font-size: 16px;
+  color: dimgray;
+}
+
+.user-delete label {
+  font-size: 20px;
+}

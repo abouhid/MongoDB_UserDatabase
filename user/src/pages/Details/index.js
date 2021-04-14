@@ -37,9 +37,17 @@ const Details = () => {
       <h1>{info.user.address.city}</h1>
       <h1>{info.user.address.state}</h1>
       <br />
-      <Link to={"/"}>Back</Link>
-      <Link to={`/editUser/${info.user._id}`}>Edit User</Link>
-      <Link to={`/deleteUser/${info.user._id}`}>Delete User</Link>
+      <Link to={"/"}>
+        <button>Back</button>
+      </Link>
+      <Link to={`/editUser/${info.user._id}`}>
+        {" "}
+        <button>Edit User</button>
+      </Link>
+      <Link to={`/deleteUser/${info.user._id}`}>
+        {" "}
+        <button>Delete User</button>
+      </Link>
     </div>
   );
 };

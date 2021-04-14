@@ -1,7 +1,10 @@
 .user-list {
   margin: 20px auto 0;
-  padding: 0 20px;
+  padding: 20px;
   max-width: 700px;
+}
+.user-list button {
+  margin-bottom: 10px;
 }
 
 .user-list article {
