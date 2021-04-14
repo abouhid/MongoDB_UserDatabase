@@ -38,4 +38,12 @@ module.exports = {
       console.log(err);
     }
   },
+  async delete(req, res) {
+    try {
+      const users = await User.findByIdAndRemove(req.params.id);
+      return res.send();
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
